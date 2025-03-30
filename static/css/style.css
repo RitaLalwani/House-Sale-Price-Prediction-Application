@@ -1,0 +1,111 @@
+body {
+      margin: 10px;
+      background-color: #a59ea2;
+}
+
+a {
+      text-decoration: none;
+      font-size: medium;
+      font-family: 'Courier New', Courier, monospace;
+      color: white; 
+}
+
+h2 {
+      text-decoration: none;
+      font-size: medium;
+      font-family: 'Courier New', Courier, monospace; 
+      color: #312f31;
+}
+
+p.note {
+      background-color: #b18e9f;
+      color: #ffffff;
+}
+
+.main { 
+      float: right !important; 
+      color: #0a0a0a !important;
+}
+
+.sub {
+      background-color: #b18e9f;
+      color: white;
+}
+
+.heading1 {
+      text-align: center;
+      color: #f3eaee;
+
+}
+
+.heading {
+      text-shadow: #0a0a0a;
+      color: #ffffff;
+}
+
+.hmbtn {
+      float: right;
+} 
+
+.grid-container {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 10px;
+      background-color: #b18e9f;
+      padding: 5px;
+}
+
+.grid-item {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      text-align: left;
+      padding: 5px;
+      font-size: 15px;
+}
+
+.btn {
+      border-color: #312f31 !important;
+      color: #ffffff;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      background-color: #564e52 !important;
+      border-color: #090909 !important;
+      padding: 5px;
+      font-size: medium;
+}
+
+.csvbtn {
+      border-color: #312f31 !important;
+      color: #ffffff;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      background-color: #564e52 !important;
+      border-color: #090909 !important;
+      padding: 2px;
+      font-size: medium;
+      float: right;
+}
+
+label {
+      text-align: left;
+      width: 40%;
+}
+
+input {
+      text-align: left;
+      width: 35%;
+}
+
+span.hist {
+      color: #eff4f4;
+}
+
+span.infla {
+      color: #ebe3e7;
+}
+
+.output {
+      background-color: #b18e9f;
+      text-align: left;
+      height: 20px;
+      margin-top: 10px;
+      padding: 10px;
+}
