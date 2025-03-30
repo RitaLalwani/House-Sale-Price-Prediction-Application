@@ -2,7 +2,7 @@
 House Sale Price Prediction Application
 
 # Dataset
-Kaggle House Price Prediction dataset
+Kaggle House Sale Price Prediction dataset
 
 # Attribute Information
 1. Id
