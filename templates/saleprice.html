@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>House Sale Price Prediction Application</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+            <script>
+                $(document).ready(function() {
+                    localStorage.clear();
+                });
+            </script>
+    </head>
+<body>
+    <div class="hmbtn">
+        <h4><button type="submit" class="btn"><a style="text-decoration: none; color: #ffffff;" href="{{url_for('home')}}">Home</a></button></h4>
+    </div>
+    <br>
+    <div class="heading1">
+        <h1 class="heading">House Sale Price Prediction Application</h1>
+    </div>
+    <br>
+<form action="{{url_for('saleprice')}}" name="form", method="POST">
+    <div class="grid-container">
+        <div class="grid-item">
+        <label for="MSSubClass">MSSubClass:</label>
+            <select type="number" name="MSSubClass" placeholder="Identifies the type of dwelling involved in the sale" required="required">
+                <option>Identifies the type of dwelling involved in the sale</option>
+                <option>----------</option>
+                <option value="20">1-STORY 1946 & NEWER ALL STYLES</option>
+                <option value="30">1-STORY 1945 & OLDER</option>
+                <option value="40">1-STORY W/FINISHED ATTIC ALL AGES</option>
+                <option value="45">1-1/2 STORY - UNFINISHED ALL AGES</option>
+                <option value="50">1-1/2 STORY FINISHED ALL AGES</option>
+                <option value="60">2-STORY 1946 & NEWER</option>
+                <option value="70">2-STORY 1945 & OLDER</option>
+                <option value="75">2-1/2 STORY ALL AGES</option>
+                <option value="80">SPLIT OR MULTI-LEVEL</option>
+                <option value="85">SPLIT FOYER</option>
+                <option value="90">DUPLEX - ALL STYLES AND AGES</option>
+                <option value="120">1-STORY PUD (Planned Unit Development) - 1946 & NEWER</option>
+                <option value="150">1-1/2 STORY PUD - ALL AGES</option>
+                <option value="160">2-STORY PUD - 1946 & NEWER</option>
+                <option value="180">PUD (Planned Unit Development) - MULTILEVEL - INCL SPLIT LEV/FOYER</option>
+                <option value="190">2 FAMILY CONVERSION - ALL STYLES AND AGES</option>
+            </select>
+        </div>
+        <div class="grid-item">
+        <label for="HouseAge">HouseAge:<label>
+            <input type="number" name="HouseAge" placeholder="House sold year minus house construction year " required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="MSZoning">MSZoning:<label>
+            <select type="number" name="MSZoning" placeholder="Identifies the general zoning classification of the sale" required="required">
+                <option>Identifies the general zoning classification of the sale</option>
+                <option>----------</option>
+                <option value="0">Commercial</option>
+                <option value="1">Floating Village Residential</option>
+                <option value="2">Residential High Density</option>
+                <option value="3">Residential Low Density</option>
+                <option value="4">Residential Medium Density</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="RemodAge">RemodAge:</label>
+            <input type="number" name="RemodAge" placeholder="House remodel year minus house construction year" required="required">
+        </div>
+        <div class="grid-item">
+        <label for="Neighborhood">Neighborhood:<label>
+            <select type="number" name="Neighborhood" placeholder="Physical locations within Ames city limits" required="required">
+                <option>Physical locations within Ames city limits</option>
+                <option>----------</option>
+                <option value="0">Bloomington Heights</option>
+                <option value="1">Bluestem</option>
+                <option value="2">Briardale</option>
+                <option value="3">Brookside</option>
+                <option value="4">Clear Creek</option>
+                <option value="5">College Creek</option>
+                <option value="6">Crawford</option>
+                <option value="7">Edwards</option>
+                <option value="8">Gilbert</option>
+                <option value="9">Iowa DOT and Rail Road</option>
+                <option value="10">Meadow Village</option>
+                <option value="11">Mitchell</option>
+                <option value="12">North Ames</option>
+                <option value="15">Northridge</option>
+                <option value="13">Northpark Villa</option>
+                <option value="16">Northridge Heights</option>
+                <option value="14">Northwest Ames</option>
+                <option value="17">Old Town</option>
+                <option value="18">South & West of Iowa State University</option>
+                <option value="19">Sawyer</option>
+                <option value="20">Sawyer West</option>
+                <option value="21">Somerset</option>
+                <option value="22">Stone Brook</option>
+                <option value="23">Timberland</option>
+                <option value="24">Veenker</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="1stFlrSF">1stFlrSF:<label>
+            <input type="number" name="1stFlrSF" placeholder="First Floor square feet" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="StreetAlley">StreetAlley:<label>
+            <select type="number" name="StreetAlley" placeholder="Type of road/alley access to property" required="required">
+                <option>Type of road/alley access to property</option>
+                <option>----------</option>
+                <option value="0">Gravel</option>
+                <option value="1">Paved</option>
+                <option value="2">NA</option>
+            </select>
+        </div>
+        <div class="grid-item">
+        <label for="LowQualFinSF">LowQualFinSF:<label>
+            <input type="number" name="LowQualFinSF" placeholder="Low quality finished square feet (all floors)" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="BldgType">BldgType:<label>
+            <select type="number" name="BldgType" placeholder="Type of dwelling" required="required">
+                <option>Type of dwelling</option>
+                <option>----------</option>
+                <option value="0">Single-family Detached</option>
+                <option value="1">Two-family Conversion; originally built as one-family dwelling</option>
+                <option value="2">Duplex</option>
+                <option value="3">Townhouse Inside Unit</option>
+                <option value="4">Townhouse End Unit</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="GrLivArea">GrLivArea:<label>
+            <input type="number" name="GrLivArea" placeholder="Above grade (ground) living area square feet" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="Foundation">Foundation:<label>
+            <select type="number" name="Foundation" placeholder="Type of foundation" required="required">
+                <option>Type of foundation</option>
+                <option>----------</option>
+                <option value="0">Brick & Tile</option>
+                <option value="1">Cinder Block</option>
+                <option value="2">Poured Concrete</option>
+                <option value="3">Slab</option>
+                <option value="4">Stone</option>
+                <option value="5">Wood</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="FullBath">FullBath:<label>
+            <input type="number" name="FullBath" placeholder="Full bathrooms above grade" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="LandSlpContr">LandSlpContr:<label>
+            <select type="number" name="LandSlpContr" placeholder="Slope/Flatness of property" required="required">
+                <option>Slope/Flatness of property</option>
+                <option>----------</option>
+                <option value="0">Banked - Quick and significant rise from street grade to building</option>
+                <option value="1">Hillside - Significant slope from side to side</option>
+                <option value="2">Depression</option>
+                <option value="3">Near Flat/Level</option>
+            </select>
+        </div>
+        <div class="grid-item">
+        <label for="HalfBath">HalfBath:</label>
+            <input type="number" name="HalfBath" placeholder="Half bathrooms above grade" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="RoofMatl">RoofMatl:<label>
+            <select type="number" name="RoofMatl" placeholder="Roof material" required="required">
+                <option>Roof material</option>
+                <option>----------</option>
+                <option value="0">Clay or Tile</option>
+                <option value="1">Standard (Composite) Shingle</option>
+                <option value="2">Membrane</option>
+                <option value="3">Metal</option>
+                <option value="4">Roll</option>
+                <option value="5">Gravel & Tar</option>
+                <option value="6">Wood Shakes</option>
+                <option value="7">Wood Shingles</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="BedroomAbvGr">BedroomAbvGr:<label>
+            <input type="number" name="BedroomAbvGr" placeholder="Bedrooms above grade (does NOT include basement bedrooms)" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="Utilities">Utilities:<label>
+            <select type="number" name="Utilities" placeholder="Type of utilities available" required="required">
+                <option>Type of utilities available</option>
+                <option>----------</option>
+                <option value="0">All public Utilities (E,G,W,& S)</option>
+                <option value="1">Electricity and Gas Only</option>
+                <option value="2">Electricity, Gas, and Water (Septic Tank)</option>
+                <option value="3">Electricity only</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="KitchenAbvGr">KitchenAbvGr:<label>
+            <input type="number" name="KitchenAbvGr" placeholder="Kitchens above grade" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="Electrical">Electrical:<label>
+            <select type="number" name="Electrical" placeholder="Electrical system" required="required">
+                <option>Electrical system</option>
+                <option>----------</option>
+                <option value="0">Standard Circuit Breakers & Romex</option>
+                <option value="1">Fuse Box over 60 AMP and all Romex wiring (Average)</option>
+                <option value="2">60 AMP Fuse Box and mostly Romex wiring (Fair)</option>
+                <option value="3">60 AMP Fuse Box and mostly knob & tube wiring (poor)</option>
+                <option value="4">Mixed</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="LivRmsAbvGrd">LivRmsAbvGrd:<label>
+            <input type="number" name="LivRmsAbvGrd" placeholder="Total rooms above grade (does not include bedrooms/Kitchens/bathrooms)" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="Heating">Heating:<label>
+            <select type="number" name="Heating" placeholder="Type of heating" required="required">
+                <option>Type of heating</option>
+                <option>----------</option>
+                <option value="0">Floor Furnace</option>
+                <option value="1">Gas forced warm air furnace</option>
+                <option value="2">Gas hot water or steam heat</option>
+                <option value="3">Gravity furnace</option>
+                <option value="4">Hot water or steam heat other than gas</option>
+                <option value="5">Wall furnace</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="BsmtFinSF">BsmtFinSF:<label>
+            <input type="number" name="BsmtFinSF" placeholder="Finished square feet" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="BsmtFinType">BsmtFinType:<label>
+            <select type="number" name="BsmtFinType" placeholder="Rating of basement finished area" required="required">
+                <option>Rating of basement finished area</option>
+                <option>----------</option>
+                <option value="2">Good Living Quarters</option>
+                <option value="0">Average Living Quarters</option>
+                <option value="1">Below Average Living Quarters</option>
+                <option value="4">Average Rec Room</option>
+                <option value="3">Low Quality</option>
+                <option value="5">Unfinished</option>
+                <option value="6">No Basement</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="TotalBsmtSF">TotalBsmtSF:<label>
+            <input type="number" name="TotalBsmtSF" placeholder="Total square feet of basement area" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="BsmtGrade">BsmtGrade:<label>
+            <select type="number" name="BsmtGrade" placeholder="Evaluates the height and general condition of the basement" required="required">
+                <option>Evaluates the height and general condition of the basement</option>
+                <option>----------</option>
+                <option value="0">Excellent</option>
+                <option value="1">Good</option>
+                <option value="2">Typical</option>
+                <option value="3">Fair</option>
+                <option value="4">Poor</option>
+                <option value="5">No Basement</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="TotalBsmtBath">TotalBsmtBath:<label>
+            <input type="number" name="TotalBsmtBath" placeholder="Basement full/half bathrooms" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="CentralAir">CentralAir:<label>
+            <select type="number" name="CentralAir" placeholder="Central air conditioning" required="required">
+                <option>Central air conditioning</option>
+                <option>----------</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="GarageAge">GarageAge:</label>
+            <input type="number" name="GarageAge" placeholder="House sold year minus garage construction year" required="required">
+        </div>
+        <div class="grid-item">
+        <label for="GarageType">GarageType:<label>
+            <select type="number" name="GarageType" placeholder="Garage location" required="required">
+                <option>Garage location</option>
+                <option>----------</option>
+                <option value="0">More than one type of garage</option>
+                <option value="1">Attached to home</option>
+                <option value="2">Basement Garage</option>
+                <option value="3">Built-In (Garage part of house - typically has room above garage)</option>
+                <option value="4">Car Port</option>
+                <option value="5">Detached from home</option>
+                <option value="6">No Garage</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="WDOpnPorch">WDOpnPorch:<label>
+            <input type="number" name="WDOpnPorch" placeholder="Wooddeck/Openporch area in square feet" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="GarageGrade">GarageGrade:<label>
+            <select type="number" name="GarageGrade" placeholder="Garage quality and condition" required="required">
+                <option>Garage quality and condition</option>
+                <option>----------</option>
+                <option value="0">Excellent</option>
+                <option value="1">Good</option>
+                <option value="2">Average/Typical</option>
+                <option value="3">Fair</option>
+                <option value="4">Poor</option>
+                <option value="5">No Garage</option>
+            </select>
+        </div>
+        <div class="grid-item">
+        <label for="TSSnEncPorch">TSSnEncPorch:<label>
+            <input type="number" name="EnclosedPorch" placeholder="3season/Screen/Enclosed porch area in square feet" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="PavedDrive">PavedDrive:<label>
+            <select type="number" name="PavedDrive" placeholder="Paved driveway" required="required">
+                <option>Paved driveway</option>
+                <option>----------</option>
+                <option value="2">Paved</option>
+                <option value="1">Partial Pavement</option>
+                <option value="0">Dirt/Gravel</option>
+            </select>
+        </div>
+        <div class="grid-item">
+        <label for="LotCondition">LotCondition:<label>
+            <select type="number" name="LotCondition" placeholder="Proximity to various conditions" required="required">
+                <option>Proximity to various conditions</option>
+                <option>----------</option>
+                <option value="0">Adjacent to arterial street</option>
+                <option value="1">Adjacent to feeder street</option>
+                <option value="2">Normal</option>
+                <option value="8">Within 200' of North-South Railroad</option>
+                <option value="6">Adjacent to North-South Railroad</option>
+                <option value="4">Near positive off-site feature--park, greenbelt, etc</option>
+                <option value="3">Adjacent to positive off-site feature</option>
+                <option value="7">Within 200' of East-West Railroad</option>
+                <option value="5">Adjacent to East-West Railroad</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="LotExterior">LotExterior:<label>
+            <select type="number" name="LotExterior" placeholder="Exterior covering on house" required="required">
+                <option>Exterior covering on house</option>
+                <option>----------</option>
+                <option value="0">Asbestos Shingles</option>
+                <option value="1">Asphalt Shingles</option>
+                <option value="2">Brick Common</option>
+                <option value="3">Brick Face</option>
+                <option value="4">Cinder Block</option>
+                <option value="5">Cement Board</option>
+                <option value="6">Hard Board</option>
+                <option value="7">Imitation Stucco</option>
+                <option value="8">Metal Siding</option>
+                <option value="9">Plywood</option>
+                <option value="10">PreCast</option>
+                <option value="11">Stone</option>
+                <option value="12">Stucco</option>
+                <option value="13">Vinyl Siding</option>
+                <option value="14">Wood Siding</option>
+                <option value="15">Wood Shingles</option>
+                <option value="16">Other</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="ExterGrade">ExterGrade:<label>
+            <select type="number" name="ExterGrade" placeholder="Evaluates the present condition and quality of the material on the exterior" required="required">
+                <option>Evaluates the present condition and quality of the material on the exterior</option>
+                <option>----------</option>
+                <option value="0">Excellent</option>
+                <option value="1">Good</option>
+                <option value="2">Average/Typical</option>
+                <option value="3">Fair</option>
+                <option value="4">Poor</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="Fence">Fence:<label>
+            <select type="number" name="Fence" placeholder="Fence quality" required="required">
+                <option>Fence quality</option>
+                <option>----------</option>
+                <option value="0">Good Privacy</option>
+                <option value="1">Minimum Privacy</option>
+                <option value="2">Good Wood</option>
+                <option value="3">Minimum Wood/Wire</option>
+                <option value="4">No Fence</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="Functional">Functional:<label>
+            <select type="number" name="Functional" placeholder="Home functionality (Assume typical unless deductions are warranted)" required="required">
+                <option>Home functionality (Assume typical unless deductions are warranted)</option>
+                <option>----------</option>
+                <option value="6">Typical Functionality</option>
+                <option value="2">Minor Deductions 1</option>
+                <option value="3">Minor Deductions 2</option>
+                <option value="4">Moderate Deductions</option>
+                <option value="0">Major Deductions 1</option>
+                <option value="1">Major Deductions 2</option>
+                <option value="5">Severely Damaged</option>
+                <option value="7">Salvage only</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="MiscFeature">MiscFeature:<label>
+            <select type="number" name="MiscFeature" placeholder="Miscellaneous feature not covered in other categories" required="required">
+                <option>Miscellaneous feature not covered in other categories</option>
+                <option>----------</option>
+                <option value="0">2nd Garage (if not described in garage section)</option>
+                <option value="1">Other</option>
+                <option value="2">Shed (over 100 SF)</option>
+                <option value="3">Tennis Court</option>
+                <option value="4">None</option>
+                <option value="5">Elevator</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <label for="MiscVal">MiscVal:<label>
+            <input type="number" name="MiscVal" placeholder="$Value of miscellaneous feature" required="required"/>
+        </div>
+        <div class="grid-item">
+        <label for="SaleCondition">SaleCondition:<label>
+            <select type="number" name="SaleCondition" placeholder="Condition of sale" required="required">
+                <option>Condition of sale</option>
+                <option>----------</option>
+                <option value="0">Abnormal Sale -  trade, foreclosure, short sale</option>
+                <option value="1">Adjoining Land Purchase</option>
+                <option value="2">Allocation - two linked properties with separate deeds, typically condo with a garage unit</option>
+                <option value="3">Sale between family members</option>
+                <option value="4">Normal Sale</option>
+                <option value="5">Home was not completed when last assessed (associated with New Homes)</option>
+            </select>  
+        </div>
+        <div class="grid-item">
+        <label for="SaleType">SaleType:<label>
+            <select type="number" name="SaleType" placeholder="Type of sale" required="required">
+                <option>Type of sale</option>
+                <option>----------</option>
+                <option value="0">Court Officer Deed/Estate</option>
+                <option value="1">Warranty Deed - Cash</option>
+                <option value="2">Contract 15% Down payment regular terms</option>
+                <option value="3">Contract Low Down</option>
+                <option value="4">Contract Low Interest</option>
+                <option value="5">Contract Low Down payment and low interest</option>
+                <option value="6">Home just constructed and sold</option>
+                <option value="7">Warranty Deed - VA Loan</option>
+                <option value="8">Warranty Deed - Conventional</option>
+                <option value="9">Other</option>
+            </select>  
+        </div>
+        <div class="grid-item">
+        <label for="OverallGrade">OverallGrade:<label>
+            <select type="number" name="OverallGrade" placeholder="Rates the overall material, finish and condition of the house" required="required">
+                <option>Rates the overall material, finish and condition of the house</option>
+                <option>----------</option>
+                <option value="10">Very Excellent</option>
+                <option value="9">Excellent</option>
+                <option value="8">Very Good</option>
+                <option value="7">Good</option>
+                <option value="6">Above Average</option>
+                <option value="5">Average</option>
+                <option value="4">Below Average</option>
+                <option value="3">Fair</option>
+                <option value="2">Poor</option>
+                <option value="1">Very Poor</option>
+            </select>     
+        </div>
+        <div class="grid-item">
+        <button type="submit" class="btn">Submit</button>
+        </div>
+    </div>
+</form>
+<div>
+</div>
+</body>
+</html>

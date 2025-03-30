@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>House Sale Price Prediction Application</title>
+            <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        </head>
+        
+    <body>
+        <div class="hmbtn">
+            <h4><button type="submit" class="btn"><a style="text-decoration: none; color: #ffffff;" href="{{url_for('home')}}">Home</a></button></h4>
+        </div>
+        <br>
+        <div class="heading1">
+        <h1 class="heading">House Sale Price Prediction Application</h1>
+        </div>
+    <br>
+    <div class="grid-container">
+    <div class="grid-item">
+        <form action="{{url_for('csvresult')}}" name="form" method="POST" enctype="multipart/form-data">   
+            <h3 class="output">Historical House Sale Price Prediction For CSV Data File Is In $ 
+                <button class="csvbtn" type="submit" name="submit" value="submit">
+                    <a href="/static/file/prediction.csv" download>Historical CSVFile Downloads</a></button></h3>
+            <h3>{{result}}</h3>
+        </form>
+        <br><br>
+        <form action="{{url_for('csvresult')}}" name="form" method="POST" enctype="multipart/form-data">   
+            <h3 class="output">Inflated House Sale Price Prediction For CSV Data File Is In $ 
+                <button class="csvbtn" type="submit" name="submit" value="submit">
+                    <a href="/static/file/cpihpplgbmrcvplm.csv" download>Inflated CSVFile Downloads</a></button></h3>
+            <h3>{{result1}}</h3>
+        </form>
+    </div>
+
+    </div>
+</body>  
+</html>

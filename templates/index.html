@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>House Sale Price Prediction Application</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    </head>
+    
+<body>
+    <div class="hmbtn">
+        <h4><button type="submit" class="btn"><a href="{{url_for('home')}}">Home</a></button></h4>
+    </div>
+    <br>
+    <div class="heading1">
+    <h1 class="heading">House Sale Price Prediction Application</h1>
+    </div>
+<br>
+<div class="grid-container">
+    <div class="grid-item">
+        <h2>1. Manual Data Entry For House Sale Price Prediction
+        <button class="btn" type="submit" name="submit" value="submit"><a href="{{url_for('manual')}}">Redirect</a></button></h2>
+        <br><br>
+        <h2>2. House Sale Price Prediction For CSV Data File</h2>
+        <br>
+        <form action="{{url_for('csvresult')}}" name="form" method="POST" enctype="multipart/form-data">    
+            <input class="sub" type="file" name="file" value="file" required="required">
+            <button class="btn" type="submit" name="submit" value="submit">Submit</button>
+        </form>
+        <br>
+        <p class="note">Note :- Here csv file columns name should be ["MSSubClass", "MSZoning", "Utilities", 
+            "Neighborhood", "BldgType", "RoofMatl", "Foundation", "TotalBsmtSF", "Heating", 
+            "CentralAir", "Electrical", "1stFlrSF", "LowQualFinSF", "GrLivArea", "FullBath", 
+            "HalfBath", "BedroomAbvGr", "KitchenAbvGr", "LivRmsAbvGrd", "Functional", "GarageType", 
+            "PavedDrive", "Fence", "MiscFeature", "MiscVal", "SaleType", "SaleCondition", "StreetAlley", 
+            "LandSlpContr", "LotCondition", "BsmtFinType", "BsmtGrade", "LotExterior", "ExterGrade", 
+            "GarageGrade", "HouseAge", "GarageAge", "RemodAge", "BsmtFinSF", "TotalBsmtBath", "WDOpnPorch", 
+            "TSSnEncPorch", "OverallGrade"] for desired result.</p>
+    </div>
+</div>
+</body>
+</html>
